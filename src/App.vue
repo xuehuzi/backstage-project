@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <login></login>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import login from './components/login'
+
+  export default {
+    name: 'App',
+    components:{
+      login
+    }
+  }
 </script>
 
 <style>
-#app {
 
-}
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  #app {
+    position: fixed;
+    background: url("./assets/timg.jpg") no-repeat;
+    width: 100%;
+    height: 100%;
+    min-width: 1080px;
+    background-size: 100% 100%;
+  }
 </style>
