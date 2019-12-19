@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <login></login>
+    <div class="main">
+      <router-view name="main"></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-  import login from './components/login'
-
   export default {
     name: 'App',
-    components:{
-      login
-    }
   }
 </script>
 
@@ -23,11 +20,6 @@
   }
 
   #app {
-    position: fixed;
-    background: url("./assets/timg.jpg") no-repeat;
-    width: 100%;
-    height: 100%;
-    min-width: 1080px;
-    background-size: 100% 100%;
+
   }
 </style>
