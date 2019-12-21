@@ -33,10 +33,9 @@
 </template>
 
 <script>
-  import test from '../components/test'
   export default {
     name: "aside_lists",
-    components:{test},
+    components:{},
     data: function () {
       return {
         lists: [
@@ -45,9 +44,13 @@
             son: [
               {
                 name: '注册数据',
-                router:'/main_list/test'
+                router:'/main_list/user_data'
               },
-              {name: '订单数据'},
+              {
+                name: '订单数据',
+                router:'/main_list/order_data'
+              },
+
             ]
           },
           {

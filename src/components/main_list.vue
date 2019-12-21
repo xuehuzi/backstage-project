@@ -7,16 +7,17 @@
       <el-container>
         <el-header>Header</el-header>
         <el-main>
-          <main_content></main_content>
+          <router-view name="main_content"></router-view>
         </el-main>
       </el-container>
     </el-container>
+    <router-view name="main_list"></router-view>
   </div>
 </template>
 
 <script>
   import aside_lists from './aside_lists'
-  import main_content from './main_content'
+  import main_content from './user_data'
 
   export default {
     name: "main_list",
