@@ -20,6 +20,6 @@
   }
 
   #app {
-
+    min-height: 100vh;
   }
 </style>
