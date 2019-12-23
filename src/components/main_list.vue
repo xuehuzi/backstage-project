@@ -17,11 +17,10 @@
 
 <script>
   import aside_lists from './aside_lists'
-  import main_content from './user_data'
 
   export default {
     name: "main_list",
-    components: {aside_lists, main_content}
+    components: {aside_lists}
   }
 </script>
 
@@ -62,6 +61,6 @@
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    padding: 0;
   }
 </style>

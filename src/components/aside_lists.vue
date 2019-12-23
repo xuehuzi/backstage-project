@@ -56,14 +56,19 @@
           {
             title: '信息查询',
             son: [
-              {name: '用户信息'},
-              {name: '商品信息'},
+              {
+                name: '用户查询',
+                router:'/main_list/user_query'
+              },
+              {
+                name: '商户查询',
+                router:'/main_list/business_query'
+              },
             ]
           },
         ]
       }
-    },
-    methods: {}
+    }
   }
 </script>
 
