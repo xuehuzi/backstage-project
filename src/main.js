@@ -29,12 +29,3 @@ new Vue({
   components: {App},
   template: '<App/>'
 });
-
-Vue.filter('time_filter', function (str) {
-  let year = str.getFullYear()
-  let month = str.getMonth() + 1
-  let day = str.getDate()
-  let hour = str.getHours()
-  let minutes = str.getMinutes()
-  return year + ':' + month + ':' + day + ':' + hour + ':' + minutes
-});
