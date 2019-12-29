@@ -20,4 +20,8 @@
   #app {
     min-height: 100vh;
   }
+
+  .cell{
+    text-align: center;
+  }
 </style>
