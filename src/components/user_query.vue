@@ -83,7 +83,7 @@
             break
           } else {
             this.search_flg = false;
-            this.search_tips = '账号没注册'
+            this.search_tips = '账号没注册或查询为空'
           }
         }
       },

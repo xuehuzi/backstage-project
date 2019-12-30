@@ -64,6 +64,10 @@
                 name: '商户查询',
                 router:'/main_list/business_query'
               },
+              {
+                name: '新增商户',
+                router:'/main_list/business_add'
+              },
             ]
           },
         ]

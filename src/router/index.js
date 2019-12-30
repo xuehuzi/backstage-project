@@ -6,6 +6,7 @@ import user_data from '../components/user_data'
 import order_data from '../components/order_data'
 import user_query from '../components/user_query'
 import business_query from '../components/business_query'
+import business_add from '../components/business_add'
 
 Vue.use(Router)
 
@@ -47,6 +48,13 @@ export default new Router({
           name: 'user_query',
           components: {
             main_content: user_query
+          }
+        },
+        {
+          path: 'business_add',
+          name: 'business_add',
+          components: {
+            main_content: business_add
           }
         }
       ]
