@@ -1,7 +1,7 @@
 <template>
   <div class="business_add">
     <h3 class="business_tips">店铺信息</h3>
-    <el-form :model="business_msg" :rules="rules" ref="business_msg" label-width="70px" class="submit-btn">
+    <el-form :model="business_msg" :rules="rules" ref="business_msg" class="submit-btn">
       <el-form-item prop="name" label="店名">
         <el-input placeholder="请输入账户名" v-model="business_msg.name" clearable></el-input>
       </el-form-item>
@@ -15,46 +15,45 @@
         <el-input type="textarea" placeholder="请输入公告" v-model="business_msg.notice" clearable></el-input>
       </el-form-item>
       <h3 class="business_tips">商品信息</h3>
-      <el-form-item>
-        <el-table :data="business_msg.goods" style="width: 100%">
-          <el-table-column
-            prop="business_msg.goods.name"
-            label="商品名称"
-            width="300">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.name"></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="business_msg.goods.price"
-            label="商品价格"
-            width="100">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.price"></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="business_msg.goods.numb"
-            label="商品数量"
-            width="100">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.numb"></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="business_msg.goods.title"
-            label="商品说明">
-            <template slot-scope="scope">
+
+      <el-table :data="business_msg.goods">
+        <el-table-column min-width="100%" label="商品名称">
+          <template slot-scope="scope">
+            <el-form-item :prop="'goods.'+scope.$index+'.goods_name'" :rules="rules.goods_name">
+              <el-input v-model="scope.row.goods_name"></el-input>
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column min-width="25%" label="商品价格">
+          <template slot-scope="scope">
+            <el-form-item :prop="'goods.'+scope.$index+'.price'" :rules="rules.price">
+              <el-input placeholder="价格" v-model="scope.row.price"></el-input>
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column min-width="25%" label="商品数量">
+          <template slot-scope="scope">
+            <el-form-item :prop="'goods.'+scope.$index+'.numb'" :rules="rules.numb">
+              <el-input v-model.number="scope.row.numb"></el-input>
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column min-width="100%" label="商品说明">
+          <template slot-scope="scope">
+            <el-form-item :prop="'goods.'+scope.$index+'.title'" :rules="rules.title">
               <el-input v-model="scope.row.title"></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作" width="105">
-            <template slot-scope="scope">
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column min-width="25%" label="操作">
+          <template slot-scope="scope">
+            <el-form-item>
               <el-button @click="btn_del(scope.$index, scope.row)">删除</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-form-item>
+            </el-form-item>
+          </template>
+        </el-table-column>
+      </el-table>
+
       <el-button type="primary" @click="newsubmit('business_msg')">提交</el-button>
       <el-button type="primary" @click="add">新增商品</el-button>
     </el-form>
@@ -67,6 +66,48 @@
   export default {
     name: "business_add",
     data: function () {
+      let pat = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/;
+      let pat_tel = /^1[3456789]\d{9}$/;
+      let pat_price = /^[0-9]+([.]{1}[0-9]{1,2})?$/;
+      let check_name = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('不能为空'));
+        }
+        setTimeout(() => {
+          if (!pat.test(value)) {
+            callback(new Error('不能含有特殊符号'));
+          } else {
+            callback();
+          }
+        }, 1000);
+      };
+
+      let check_tel = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('不能为空'));
+        }
+        setTimeout(() => {
+          if (!pat_tel.test(value)) {
+            callback(new Error('请输入正确手机号'));
+          } else {
+            callback();
+          }
+        }, 1000);
+      };
+
+      let check_price = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('不能为空'));
+        }
+        setTimeout(() => {
+          if (!pat_price.test(value)) {
+            callback(new Error('价格错误'));
+          } else {
+            callback();
+          }
+        }, 1000);
+      };
+
       return {
         business_msg: {
           name: '',
@@ -77,40 +118,78 @@
         },
         rules: {
           name: [
-            //{validator: check_name},
-            {required: true, trigger: 'blur'},
+            {validator: check_name},
             {min: 3, max: 8, message: '长度在 3 到 8 个字符', trigger: 'blur'}
           ],
           tel: [
-            //{validator: check_password},
-            {required: true, trigger: 'blur'},
-            {min: 5, max: 12, message: '长度在 5 到 12 个字符', trigger: 'blur'}
+            {validator: check_tel},
+          ],
+          address: [
+            {required: true, trigger: 'blur', message: '不能为空'},
+            {max: 30, message: '最多30个字'}
+          ],
+          notice: [
+            {max: 30, message: '最多30个字'}
+          ],
+          goods_name: [
+            {validator: check_name},
+            {min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur'}
+          ],
+          price: [
+            {validator: check_price},
+          ],
+          numb: [
+            {type: 'number', message: '必须为数字'},
+            {
+              validator(rule, value, callback) {
+                if (Number.isInteger(Number(value)) && Number(value) > 0 && Number(value) < 999) {
+                  callback()
+                } else {
+                  callback(new Error('必须正整数'))
+                }
+              },
+              trigger: 'blur'
+            }
+          ],
+          title: [
+            {max: 12, message: '最多12个字符'}
           ]
-        },
+        }
       }
     },
     methods: {
-      newsubmit: function () {
-        let business_data = AV.Object.extend("business_data");
-        let business_Data = new business_data();
-        business_Data.save({
-          name: this.business_msg.name,
-          tel: this.business_msg.tel,
-          address: this.business_msg.address,
-          notice: this.business_msg.notice,
-          goods: this.business_msg.goods
-        }).then(
-          () => {
+      newsubmit: function (business_msg) {
+        this.$refs[business_msg].validate((valid) => {
+          if (valid) {
+            let business_data = AV.Object.extend("business_data");
+            let business_Data = new business_data();
+            business_Data.save({
+              name: this.business_msg.name,
+              tel: this.business_msg.tel,
+              address: this.business_msg.address,
+              notice: this.business_msg.notice,
+              goods: this.business_msg.goods
+            }).then(
+              () => {
+                this.business_msg.goods=[];
+                this.$message({
+                  message: '新增商户成功',
+                  type: 'success'
+                })
+              }
+            )
+          } else {
             this.$message({
-              message: '新增商户成功',
-              type: 'success'
-            })
+              message: "检查输入",
+              type: "error"
+            });
+            return false;
           }
-        )
+        })
       },
       add: function () {
         this.business_msg.goods.push({
-          name: '',
+          goods_name: '',
           price: '',
           numb: '',
           title: ''
@@ -131,4 +210,5 @@
   .business_tips {
     text-align: initial;
   }
+
 </style>
