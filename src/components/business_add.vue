@@ -160,6 +160,7 @@
     methods: {
       newsubmit: function (business_msg) {
         this.$refs[business_msg].validate((valid) => {
+          console.log(this.$refs[business_msg])
           if (valid) {
             let business_data = AV.Object.extend("business_data");
             let business_Data = new business_data();

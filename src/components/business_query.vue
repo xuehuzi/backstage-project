@@ -1,15 +1,238 @@
 <template>
-    <div class="business_query">
-      <h1>business_query</h1>
+  <div class="business_query">
+    <div>
+      <el-input placeholder="请输入要查询的账户名" v-model="search_value">
+        <el-button @click="search_data" slot="append" icon="el-icon-search"></el-button>
+      </el-input>
     </div>
+    <el-table :data="business_data" ref="business_data">
+      <el-table-column min-width="0" type="expand">
+        <template slot-scope="scope">
+          <el-form size="mini"
+                   inline
+                   :key="index"
+                   v-for="(val,index) in scope.row._serverData.goods">
+            <el-form-item label="名称:">
+              <el-form :model="val" :rules="rules">  
+                <el-form-item prop="name">   
+                  <el-input :disabled="scope.row.isset" v-model="val.name"></el-input>
+                </el-form-item>
+              </el-form>
+            </el-form-item>
+            <el-form-item label="数量:">
+              <el-form :model="val" :rules="rules">  
+                <el-form-item prop="numb">   
+                  <el-input :disabled="scope.row.isset" v-model.number="val.numb"></el-input>
+                </el-form-item>
+              </el-form>
+            </el-form-item>
+            <el-form-item label="价格:">
+              <el-form :model="val" :rules="rules">  
+                <el-form-item prop="price">   
+                  <el-input :disabled="scope.row.isset" v-model="val.price"></el-input>
+                </el-form-item>
+              </el-form>
+            </el-form-item>
+            <el-form-item label="说明:">
+              <el-form :model="val" :rules="rules">  
+                <el-form-item prop="title">   
+                  <el-input :disabled="scope.row.isset" v-model="val.title"></el-input>
+                </el-form-item>
+              </el-form>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="商户名称"
+        min-width="30%">
+        <template slot-scope="scope">
+          <el-form :rules="rules" :model="scope.row._serverData">
+            <el-form-item prop="name">
+              <span v-if="scope.row.isset">{{scope.row._serverData.name}}</span>
+              <el-input :rules="rules.name" v-if="!scope.row.isset" v-model="scope.row._serverData.name"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="电话"
+        min-width="15%">
+        <template slot-scope="scope">
+          <el-form :rules="rules" :model="scope.row._serverData">
+            <el-form-item prop="tel">
+              <span v-if="scope.row.isset">{{scope.row._serverData.tel}}</span>
+              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.tel"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="公告"
+        min-width="40%">
+        <template slot-scope="scope">
+          <el-form :rules="rules" :model="scope.row._serverData">
+            <el-form-item prop="notice">
+              <span v-if="scope.row.isset">{{scope.row._serverData.notice}}</span>
+              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.notice"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="地址">
+        <template slot-scope="scope">
+          <el-form :rules="rules" :model="scope.row._serverData">
+            <el-form-item prop="address">
+              <span v-if="scope.row.isset">{{scope.row._serverData.address}}</span>
+              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.address"></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" min-width="20%">
+        <template slot-scope="scope">
+          <el-button @click="btn_edit(scope.$index, scope.row)">编辑</el-button>
+          <el-button @click="btn_keep(scope.$index, scope.row)" :disabled="scope.row.isset">保存</el-button>
+          <el-button @click="tijiao(scope.$index,scope.row,'business_data')">提交</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "business_query"
+  import {business_data, AV} from './get_data'
+
+  export default {
+    name: "business_query",
+    data: function () {
+      let pat = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/;
+      let check_name = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('不能为空'));
+        }
+        setTimeout(() => {
+          if (!pat.test(value)) {
+            callback(new Error('不能含有特殊符号'));
+          } else {
+            callback();
+          }
+        }, 1000);
+      };
+      return {
+        business_data: null,
+        rules: {
+          address: [
+            {required: true, message: '请输入活动名称', trigger: 'blur'},
+            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+          ],
+          name: [
+            {validator: check_name},
+            {min: 3, max: 8, message: '长度在 3 到 8 个字符', trigger: 'blur'}
+          ],
+          numb: [
+            {type: 'number', message: '必须为数字'},
+            {
+              validator(rule, value, callback) {
+                if (Number.isInteger(Number(value)) && Number(value) >= 0 && Number(value) < 999) {
+                  callback()
+                } else {
+                  callback(new Error('必须正整数'))
+                }
+              },
+              trigger: 'blur'
+            }
+          ],
+          title: [
+            {max: 12, message: '最多12个字符'}
+          ],
+          price: [
+            {
+              validator(rule, value, callback) {
+                let pat_price = /^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                if (!value) {
+                  return callback(new Error('不能为空'));
+                }
+                setTimeout(() => {
+                  if (!pat_price.test(value)) {
+                    callback(new Error('价格错误'));
+                  } else {
+                    callback();
+                  }
+                }, 1000);
+              },
+              trigger: 'blur'
+            }
+          ],
+          notice: [
+            {max: 30, message: '最多30个字'}
+          ],
+          tel:[
+            {
+              validator(rule, value, callback) {
+                let pat_tel = /^1[3456789]\d{9}$/;
+                if (!value) {
+                  return callback(new Error('不能为空'));
+                }
+                setTimeout(() => {
+                  if (!pat_tel.test(value)) {
+                    callback(new Error('请输入正确手机号'));
+                  } else {
+                    callback();
+                  }
+                }, 1000);
+              },
+              trigger: 'blur'
+            }
+          ]
+        },
+        search_value:''
+      }
+    },
+    methods: {
+      btn_edit(index, row) {
+        this.business_data[index].isset = false;
+        let $table = this.$refs.business_data;
+        $table.toggleRowExpansion(row, true);
+      },
+      btn_keep(index, row) {
+        let $table = this.$refs.business_data;
+        this.business_data[index].isset = true;
+        $table.toggleRowExpansion(row, false);
+      },
+      search_data(){
+
+      },
+      tijiao(index,row,business_data){
+        console.log(row)
+        console.log(this.$refs[business_data])
+        // this.$refs[business_data].validate((valid) => {
+        //   if (valid) {
+        //     alert('submit!');
+        //   } else {
+        //     console.log('error submit!!');
+        //     return false;
+        //   }
+        // })
+      }
+    },
+    created() {
+      let that = this;
+      business_data.find().then(
+        function (todos) {
+          that.business_data = todos;
+          that.business_data.map(i => {
+            that.$set(i, 'isset', true);
+            return i;
+          })
+          console.log(that.business_data)
+        })
     }
+  }
 </script>
 
 <style scoped>
+
 
 </style>
