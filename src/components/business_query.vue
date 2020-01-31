@@ -5,98 +5,103 @@
         <el-button @click="search_data" slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </div>
-    <el-table :data="business_data" ref="ref_list">
-      <el-table-column type="expand">
+    <el-table :data="business_data">
+      <el-table-column
+        type="index">
+      </el-table-column>
+      <el-table-column width="1">
         <template slot-scope="scope">
-          <el-form
-            inline
-            :key="index"
-            v-for="(val,index) in scope.row._serverData.goods">
-            <el-form-item label="名称:">
-              <el-form :model="val" :rules="rules" ref="goods_name">  
-                <el-form-item prop="name">   
-                  <el-input :disabled="scope.row.isset" v-model="val.name"></el-input>
+          <el-dialog title="收货地址" :visible.sync="scope.row.isset" width="90%">
+            <el-form
+              inline
+              label-width="90px"
+              size="small"
+              :rules="rules"
+              :ref="scope.row._serverData"
+              :model="scope.row._serverData">
+              <el-row class="my-el-row" type="flex">
+                <el-form-item label="店铺名称:" prop="name">
+                  <el-input v-model="scope.row._serverData.name"></el-input>
                 </el-form-item>
-              </el-form>
-            </el-form-item>
-            <el-form-item label="数量:">
-              <el-form :model="val" :rules="rules" ref="goods_numb">  
-                <el-form-item prop="numb">   
-                  <el-input :disabled="scope.row.isset" v-model.number="val.numb"></el-input>
+                <el-form-item label="店铺电话:" prop="tel">
+                  <el-input style="width: 137px" v-model="scope.row._serverData.tel"></el-input>
                 </el-form-item>
-              </el-form>
-            </el-form-item>
-            <el-form-item label="价格:">
-              <el-form :model="val" :rules="rules" ref="goods_price">  
-                <el-form-item prop="price">   
-                  <el-input :disabled="scope.row.isset" v-model="val.price"></el-input>
+                <el-form-item label="店铺公告:" prop="notice">
+                  <el-input style="width: 500px" v-model="scope.row._serverData.notice"></el-input>
                 </el-form-item>
-              </el-form>
-            </el-form-item>
-            <el-form-item label="说明:">
-              <el-form :model="val" :rules="rules" ref="goods_title">  
-                <el-form-item prop="title">   
-                  <el-input :disabled="scope.row.isset" v-model="val.title"></el-input>
+                <el-form-item label="店铺地址:" prop="address">
+                  <el-input style="width: 700px" v-model="scope.row._serverData.address"></el-input>
                 </el-form-item>
-              </el-form>
-            </el-form-item>
-            <el-form-item>
-              <el-button @click="goodstijiao(index)">保存</el-button>
-            </el-form-item>
-          </el-form>
+              </el-row>
+              <el-table :data="scope.row._serverData.goods">
+                <el-table-column min-width="15%" label="商品名称:">
+                  <template slot-scope="scope">
+                    <el-form-item :prop="'goods.'+scope.$index+'.name'" :rules="rules.goods_name">
+                      <el-input v-model="scope.row.name"></el-input>
+                    </el-form-item>
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="10%" label="商品数量:">
+                  <template slot-scope="scope">
+                    <el-form-item :prop="'goods.'+scope.$index+'.numb'" :rules="rules.numb">
+                      <el-input v-model.number="scope.row.numb"></el-input>
+                    </el-form-item>
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="10%" label="商品价格:">
+                  <template slot-scope="scope">
+                    <el-form-item :prop="'goods.'+scope.$index+'.price'" :rules="rules.price">
+                      <el-input v-model="scope.row.price"></el-input>
+                    </el-form-item>
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="65%" label="商品描述:">
+                  <template slot-scope="scope">
+                    <el-form-item :prop="'goods.'+scope.$index+'.title'" :rules="rules.title">
+                      <el-input style="width: 1000px" v-model="scope.row.title"></el-input>
+                    </el-form-item>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="newsubmit(scope.row,scope.row._serverData)">确 定</el-button>
+            </div>
+          </el-dialog>
         </template>
       </el-table-column>
       <el-table-column
-        label="商户名称"
-        min-width="30%">
+        label="店铺名称"
+        min-width="20%">
         <template slot-scope="scope">
-          <el-form :rules="rules" :model="scope.row._serverData" :ref="'ref_name'+scope.$index">
-            <el-form-item prop="name">
-              <span v-if="scope.row.isset">{{scope.row._serverData.name}}</span>
-              <el-input :rules="rules" v-if="!scope.row.isset" v-model="scope.row._serverData.name"></el-input>
-            </el-form-item>
-          </el-form>
+          <span>{{scope.row._serverData.name}}</span>
         </template>
       </el-table-column>
       <el-table-column
-        label="电话"
+        label="店铺电话"
         min-width="15%">
         <template slot-scope="scope">
-          <el-form :rules="rules" :model="scope.row._serverData" :ref="'ref_tel'+scope.$index">
-            <el-form-item prop="tel">
-              <span v-if="scope.row.isset">{{scope.row._serverData.tel}}</span>
-              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.tel"></el-input>
-            </el-form-item>
-          </el-form>
+          <span>{{scope.row._serverData.tel}}</span>
         </template>
       </el-table-column>
       <el-table-column
-        label="公告"
-        min-width="40%">
+        label="店铺公告"
+        min-width="90%">
         <template slot-scope="scope">
-          <el-form :rules="rules" :model="scope.row._serverData" :ref="'ref_notice'+scope.$index">
-            <el-form-item prop="notice">
-              <span v-if="scope.row.isset">{{scope.row._serverData.notice}}</span>
-              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.notice"></el-input>
-            </el-form-item>
-          </el-form>
+          <span>{{scope.row._serverData.notice}}</span>
         </template>
       </el-table-column>
       <el-table-column
-        label="地址">
+        label="店铺地址"
+        min-width="80%">
         <template slot-scope="scope">
-          <el-form :rules="rules" :model="scope.row._serverData" :ref="'ref_address'+scope.$index">
-            <el-form-item prop="address">
-              <span v-if="scope.row.isset">{{scope.row._serverData.address}}</span>
-              <el-input v-if="!scope.row.isset" v-model="scope.row._serverData.address"></el-input>
-            </el-form-item>
-          </el-form>
+          <span>{{scope.row._serverData.address}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" min-width="20%">
+      <el-table-column min-width="15%">
         <template slot-scope="scope">
-          <el-button @click="btn_edit(scope.$index, scope.row)">编辑</el-button>
-          <el-button @click="btn_keep(scope.$index, scope.row)" :disabled="scope.row.isset">提交</el-button>
+          <el-button @click="open_menu(scope.row,scope.$index)">编辑1</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -124,10 +129,12 @@
       };
       return {
         business_data: null,
+        data: null,
+        dialogFormVisible: true,
         rules: {
           address: [
-            {required: true, message: '请输入活动名称', trigger: 'blur'},
-            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+            {required: true, message: '请输入地址', trigger: 'blur'},
+            {min: 15, max: 45, message: '长度在 15 到 45 个字符', trigger: 'blur'}
           ],
           name: [
             {validator: check_name},
@@ -151,7 +158,8 @@
             }
           ],
           title: [
-            {max: 12, message: '最多12个字符'}
+            {required: true, message: '请输入说明', trigger: 'blur'},
+            {max: 60, message: '长度最多60个字符', trigger: 'blur'}
           ],
           price: [
             {
@@ -197,104 +205,33 @@
       }
     },
     methods: {
-      btn_edit(index, row) {
-        this.business_data[index].isset = false;
-        let $table = this.$refs.ref_list;
-        $table.toggleRowExpansion(row, true);
-      },
-      btn_keep(index, row) {
-        console.log(row._serverData.goods.length)
-        let $table = this.$refs.ref_list;
-        this.business_data[index].isset = true;
-        $table.toggleRowExpansion(row, false);
-        let that = this;
-        let promise = function (val) {
-          return new Promise(function (resolve, reject) {
-            that.$refs[[val] + index].validate(valid => {
-              if (valid) {
-                resolve(true)
-              } else {
-                reject(false);
-                return false;
-              }
-            })
-          })
-        };
-        Promise.all(
-          [
-            promise('ref_name', index),
-            promise('ref_tel', index),
-            promise('ref_notice', index),
-            promise('ref_address', index),
-          ]
-        ).then(
-          () => {
-            that.$message({
-              message: '验证成功',
+      newsubmit: function (row, data) {
+        console.log(row)
+        console.log(data)
+        this.$refs[data].validate((valid) => {
+          if (valid) {
+            let todo = AV.Object.createWithoutData('business_data', row.id);
+            todo.set('name', row._serverData.name);
+            todo.set('tel', row._serverData.tel);
+            todo.set('notice', row._serverData.notice);
+            todo.set('address', row._serverData.address);
+            todo.set('goods', row._serverData.goods);
+            todo.save();
+            this.$message({
+              message: '修改成功',
               type: 'success'
             })
+          } else {
+            this.$message({
+              message: "检查输入",
+              type: "error"
+            });
+            return false;
           }
-        ).catch(
-          () => {
-            that.$message({
-              message: '验证失败',
-              type: 'error'
-            })
-          }
-        )
-        // this.$refs["ref_list" + index].validate(valid => {
-        //   if (valid) {
-        //     console.log(index + "：OK");
-        //   } else {
-        //     console.log(index + "：NO");
-        //     return false;
-        //   }
-        // })
+        })
       },
-      goodstijiao(index) {
-        let that = this;
-        let promise = function (val) {
-          return new Promise(function (resolve, reject) {
-            that.$refs[[val]][index].validate(valid => {
-              if (valid) {
-                resolve(true)
-              } else {
-                reject(false);
-                return false;
-              }
-            })
-          })
-        };
-        Promise.all(
-          [
-            promise('goods_name', index),
-            promise('goods_numb', index),
-            promise('goods_price', index),
-            promise('goods_title', index),
-          ]
-        ).then(
-          () => {
-            that.$message({
-              message: '验证成功',
-              type: 'success'
-            })
-          }
-        ).catch(
-          () => {
-            that.$message({
-              message: '验证失败',
-              type: 'error'
-            })
-          }
-        )
-        // this.$refs.goods_name[index].validate(valid => {
-        //   if (valid) {
-        //     console.log(index + "：OK");
-        //   } else {
-        //     console.log(index + "：NO");
-        //     return false;
-        //   }
-        // })
+      open_menu: function (row) {
+        row.isset = true
       },
       search_data() {
 
@@ -306,7 +243,7 @@
         function (todos) {
           that.business_data = todos;
           that.business_data.map(i => {
-            that.$set(i, 'isset', true);
+            that.$set(i, 'isset', false);
             return i;
           })
           console.log(that.business_data)
@@ -316,6 +253,24 @@
 </script>
 
 <style scoped>
+  .my-el-row {
+    padding-left: 20px;
+  }
 
+  .my-el-row div {
+    width: 200px;
+    margin-right: 40px;
+  }
 
+  .my-el-row div:nth-child(2) {
+    width: 137px;
+  }
+
+  .my-el-row div:nth-child(3) {
+    width: 500px;
+  }
+
+  .my-el-row div:nth-child(4) {
+    width: 700px;
+  }
 </style>
