@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html,body{
+  min-width: 640px;
+}
+
 li {
     list-style: none;
 }
