@@ -17,7 +17,7 @@ li {
 
 .main {
     /*width: 640px;*/
-    min-width: 640px;
+    max-width: 640px;
     margin: 0 auto;
     text-align: center;
     padding: 0 0 50px 0;
