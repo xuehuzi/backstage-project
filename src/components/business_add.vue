@@ -2,6 +2,10 @@
   <div class="business_add">
     <h3 class="business_tips">店铺信息</h3>
     <el-form :model="business_msg" :rules="rules" ref="business_msg" class="submit-btn">
+      <label>
+        照片：
+        <input ref="myicon" type="file" accept=".png, .jpg, .jpeg"/>
+      </label>
       <el-form-item prop="name" label="店名">
         <el-input placeholder="请输入账户名" v-model="business_msg.name" clearable></el-input>
       </el-form-item>
@@ -15,7 +19,6 @@
         <el-input type="textarea" placeholder="请输入公告" v-model="business_msg.notice" clearable></el-input>
       </el-form-item>
       <h3 class="business_tips">商品信息</h3>
-
       <el-table :data="business_msg.goods">
         <el-table-column min-width="100%" label="商品名称">
           <template slot-scope="scope">
@@ -45,6 +48,11 @@
             </el-form-item>
           </template>
         </el-table-column>
+        <el-table-column label="照片：">
+          <template slot-scope="scope">
+            <input :ref="'goods_pic'+scope.$index" type="file" accept=".png, .jpg, .jpeg"/>
+          </template>
+        </el-table-column>
         <el-table-column min-width="25%" label="操作">
           <template slot-scope="scope">
             <el-form-item>
@@ -53,7 +61,6 @@
           </template>
         </el-table-column>
       </el-table>
-
       <el-button type="primary" @click="newsubmit('business_msg')">提交</el-button>
       <el-button type="primary" @click="add">新增商品</el-button>
     </el-form>
@@ -81,7 +88,6 @@
           }
         }, 1000);
       };
-
       let check_tel = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('不能为空'));
@@ -94,7 +100,6 @@
           }
         }, 1000);
       };
-
       let check_price = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('不能为空'));
@@ -107,9 +112,9 @@
           }
         }, 1000);
       };
-
       return {
         business_msg: {
+          icon: '',
           name: '',
           tel: null,
           address: '',
@@ -159,41 +164,73 @@
     },
     methods: {
       newsubmit: function (business_msg) {
-        this.$refs[business_msg].validate((valid) => {
-          console.log(this.$refs[business_msg])
-          if (valid) {
-            let business_data = AV.Object.extend("business_data");
-            let business_Data = new business_data();
-            business_Data.save({
-              name: this.business_msg.name,
-              tel: this.business_msg.tel,
-              address: this.business_msg.address,
-              notice: this.business_msg.notice,
-              goods: this.business_msg.goods
-            }).then(
-              () => {
-                this.business_msg.goods=[];
-                this.$message({
-                  message: '新增商户成功',
-                  type: 'success'
-                })
+        let business_data = AV.Object.extend("business_data");
+        let business_Data = new business_data();
+        let obj;
+        let files = this.$refs.myicon.files;
+
+        this.$refs[business_msg].validate((valid) => {//表单验证函数
+          if (valid) {//验证成功
+            if (files.length) {
+              let file = new AV.File(files[0].name, files[0]);
+              this.business_msg.icon = file.attributes.url;
+              file.save().then(//店铺图上传
+                (file) => {
+                  this.business_msg.icon = file.attributes.url;
+                }, function (error) {
+                  console.log(error)// 保存失败，可能是文件无法被读取，或者上传过程中出现问题
+                }
+              )
+            } else {
+              alert('检查店铺图')
+            }
+
+            for (let i = 0; i < this.business_msg.goods.length; i++) {//商品图
+              let files = this.$refs['goods_pic' + [i]].files;
+              if (files.length) {
+                let file = new AV.File(files[0].name, files[0]);
+                if (this.$refs['goods_pic' + [i]].value !== '') {
+                  file.save().then(
+                    (file) => {
+                      this.business_msg.goods[i].goods_pic = file.attributes.url;
+                    }).then(
+                    () => {
+                      obj = JSON.parse(JSON.stringify(this.business_msg));
+                      business_Data.set('icon', obj.icon);
+                      business_Data.set('name', obj.name);
+                      business_Data.set('tel', obj.tel);
+                      business_Data.set('address', obj.address);
+                      business_Data.set('notice', obj.notice);
+                      business_Data.set('goods', obj.goods);
+                    }
+                  ).then(
+                    () => {
+                      business_Data.save();
+                    }
+                  ).then(
+                    () => {
+                      alert('提交成功')
+                    }
+                  )
+                }
+              } else {
+                alert('检查商品图')
               }
-            )
+            }
+
           } else {
-            this.$message({
-              message: "检查输入",
-              type: "error"
-            });
-            return false;
+            alert('表单验证失败')
           }
         })
+
       },
       add: function () {
         this.business_msg.goods.push({
           goods_name: '',
           price: '',
           numb: '',
-          title: ''
+          title: '',
+          goods_pic: ''
         })
       },
       btn_del: function (index) {
@@ -204,12 +241,40 @@
 </script>
 
 <style scoped>
+
   .business_add {
     padding: 20px;
   }
 
   .business_tips {
     text-align: initial;
+  }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
   }
 
 </style>

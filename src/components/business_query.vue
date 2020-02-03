@@ -37,7 +37,7 @@
                 <el-table-column min-width="15%" label="商品名称:">
                   <template slot-scope="scope">
                     <el-form-item :prop="'goods.'+scope.$index+'.name'" :rules="rules.goods_name">
-                      <el-input v-model="scope.row.name"></el-input>
+                      <el-input v-model="scope.row.goods_name"></el-input>
                     </el-form-item>
                   </template>
                 </el-table-column>
@@ -60,6 +60,11 @@
                     <el-form-item :prop="'goods.'+scope.$index+'.title'" :rules="rules.title">
                       <el-input style="width: 1000px" v-model="scope.row.title"></el-input>
                     </el-form-item>
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="65%" label="商品图片:">
+                  <template slot-scope="scope">
+                    <img :src="scope.row.goods_pic">
                   </template>
                 </el-table-column>
               </el-table>
@@ -97,6 +102,13 @@
         min-width="80%">
         <template slot-scope="scope">
           <span>{{scope.row._serverData.address}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="店铺图片"
+        min-width="30%">
+        <template slot-scope="scope">
+          <img :src="scope.row._serverData.icon" alt="">
         </template>
       </el-table-column>
       <el-table-column min-width="15%">
