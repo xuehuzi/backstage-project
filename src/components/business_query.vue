@@ -11,7 +11,7 @@
       </el-table-column>
       <el-table-column width="1">
         <template slot-scope="scope">
-          <el-dialog title="收货地址" :visible.sync="scope.row.isset" width="90%">
+          <el-dialog title="店铺详情" :visible.sync="scope.row.isset" width="90%">
             <el-form
               inline
               label-width="90px"
@@ -20,51 +20,51 @@
               :ref="scope.row._serverData"
               :model="scope.row._serverData">
               <el-row class="my-el-row" type="flex">
-                <el-form-item label="店铺名称:" prop="name">
+                <el-form-item label="店铺名称" prop="name">
                   <el-input v-model="scope.row._serverData.name"></el-input>
                 </el-form-item>
-                <el-form-item label="店铺电话:" prop="tel">
+                <el-form-item label="店铺电话" prop="tel">
                   <el-input style="width: 137px" v-model="scope.row._serverData.tel"></el-input>
                 </el-form-item>
-                <el-form-item label="店铺公告:" prop="notice">
+                <el-form-item label="店铺公告" prop="notice">
                   <el-input style="width: 500px" v-model="scope.row._serverData.notice"></el-input>
                 </el-form-item>
-                <el-form-item label="店铺地址:" prop="address">
+                <el-form-item label="店铺地址" prop="address">
                   <el-input style="width: 700px" v-model="scope.row._serverData.address"></el-input>
                 </el-form-item>
               </el-row>
               <el-table :data="scope.row._serverData.goods">
-                <el-table-column min-width="15%" label="商品名称:">
+                <el-table-column min-width="15%" label="商品名称">
                   <template slot-scope="scope">
                     <el-form-item :prop="'goods.'+scope.$index+'.name'" :rules="rules.goods_name">
                       <el-input v-model="scope.row.goods_name"></el-input>
                     </el-form-item>
                   </template>
                 </el-table-column>
-                <el-table-column min-width="10%" label="商品数量:">
+                <el-table-column min-width="10%" label="商品数量">
                   <template slot-scope="scope">
                     <el-form-item :prop="'goods.'+scope.$index+'.numb'" :rules="rules.numb">
                       <el-input v-model.number="scope.row.numb"></el-input>
                     </el-form-item>
                   </template>
                 </el-table-column>
-                <el-table-column min-width="10%" label="商品价格:">
+                <el-table-column min-width="10%" label="商品价格">
                   <template slot-scope="scope">
                     <el-form-item :prop="'goods.'+scope.$index+'.price'" :rules="rules.price">
                       <el-input v-model="scope.row.price"></el-input>
                     </el-form-item>
                   </template>
                 </el-table-column>
-                <el-table-column min-width="65%" label="商品描述:">
+                <el-table-column min-width="65%" label="商品描述">
                   <template slot-scope="scope">
                     <el-form-item :prop="'goods.'+scope.$index+'.title'" :rules="rules.title">
-                      <el-input style="width: 1000px" v-model="scope.row.title"></el-input>
+                      <el-input style="width: 935px" v-model="scope.row.title"></el-input>
                     </el-form-item>
                   </template>
                 </el-table-column>
-                <el-table-column min-width="65%" label="商品图片:">
+                <el-table-column min-width="10%" label="商品图片">
                   <template slot-scope="scope">
-                    <img :src="scope.row.goods_pic">
+                    <img :src="scope.row.goods_pic" style="width: 80px; height: 80px">
                   </template>
                 </el-table-column>
               </el-table>
@@ -85,7 +85,7 @@
       </el-table-column>
       <el-table-column
         label="店铺电话"
-        min-width="15%">
+        min-width="20%">
         <template slot-scope="scope">
           <span>{{scope.row._serverData.tel}}</span>
         </template>
@@ -106,9 +106,9 @@
       </el-table-column>
       <el-table-column
         label="店铺图片"
-        min-width="30%">
+        min-width="15%">
         <template slot-scope="scope">
-          <img :src="scope.row._serverData.icon" alt="">
+          <img :src="scope.row._serverData.icon" alt="" style="width: 80px; height: 80px">
         </template>
       </el-table-column>
       <el-table-column min-width="15%">
