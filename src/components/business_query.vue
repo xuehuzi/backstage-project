@@ -113,7 +113,7 @@
       </el-table-column>
       <el-table-column min-width="15%">
         <template slot-scope="scope">
-          <el-button @click="open_menu(scope.row,scope.$index)">编辑1</el-button>
+          <el-button @click="open_menu(scope.row,scope.$index)">详情</el-button>
         </template>
       </el-table-column>
     </el-table>

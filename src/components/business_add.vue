@@ -56,7 +56,7 @@
           <template slot-scope="scope">
             <div class="goods_upload_bg">
               <div class="goods_upload">
-                <img class="goods_upload_img" :src="goods_icon[scope.$index]" alt="">
+                <img class="goods_upload_img" src="" :ref="'goods_icon'+scope.$index" alt="">
                 <input @change="goods_url(scope.$index)" class="goods_upload_input" :ref="'goods_pic'+scope.$index"
                        type="file"
                        accept=".jpg, .jpeg"/>
@@ -173,75 +173,39 @@
           ]
         },
         business_icon: '',
-        goods_icon: []
+        //goods_icon: [],
+        business_icon_flg: false,
+        goods_icon_flg: 0
       }
     },
     methods: {
       newsubmit: function (business_msg) {
         let business_data = AV.Object.extend("business_data");
         let business_Data = new business_data();
-        let obj;
-        let files = this.$refs.myicon.files;
-
         this.$refs[business_msg].validate((valid) => {//表单验证函数
-          if (valid) {//验证成功
-            if (files.length) {
-              let file = new AV.File(files[0].name, files[0]);
-              this.business_msg.icon = file.attributes.url;
-              file.save().then(//店铺图上传
-                (file) => {
-                  this.business_msg.icon = file.attributes.url;
-                  console.log(1)
-                }, function (error) {
-                  console.log(error)// 保存失败，可能是文件无法被读取，或者上传过程中出现问题
-                }
-              )
-            } else {
-              alert('检查店铺图')
-            }
-
-            for (let i = 0; i < this.business_msg.goods.length; i++) {//商品图
-              let files = this.$refs['goods_pic' + [i]].files;
-              if (files.length) {
-                let file = new AV.File(files[0].name, files[0]);
-                if (this.$refs['goods_pic' + [i]].value !== '') {
-                  file.save()
-                    .then(
-                      (file) => {
-                        this.business_msg.goods[i].goods_pic = file.attributes.url;
-                        console.log(2)
-                      })
-                    .then(
-                      () => {
-                        obj = JSON.parse(JSON.stringify(this.business_msg));
-                        business_Data.set('icon', obj.icon);
-                        business_Data.set('name', obj.name);
-                        business_Data.set('tel', obj.tel);
-                        business_Data.set('address', obj.address);
-                        business_Data.set('notice', obj.notice);
-                        business_Data.set('goods', obj.goods);
-                        console.log(3)
-                      })
-                    .then(
-                      () => {
-                        console.log(4)
-                        business_Data.save();
-                      })
-                    .then(
-                      () => {
-                        alert('提交成功')
-                      })
-                }
-              } else {
-                alert('检查商品图')
+          if (valid && this.business_icon_flg === true && this.goods_icon_flg === this.business_msg.goods.length) {//验证成功
+            business_Data.save({
+              icon: this.business_msg.icon,
+              name: this.business_msg.name,
+              tel: this.business_msg.tel,
+              address: this.business_msg.address,
+              notice: this.business_msg.notice,
+              goods: this.business_msg.goods
+            }).then(
+              () => {
+                this.business_msg = {};
+                this.business_icon_flg = false;
+                this.goods_icon_flg = 0;
+                this.$message({
+                  message: '提交成功',
+                  type: 'success'
+                })
               }
-            }
-
+            )
           } else {
             alert('表单验证失败')
           }
         })
-
       },
 
       add: function () {
@@ -261,14 +225,36 @@
       get_url: function () {
         let files = this.$refs.myicon.files;
         let url = window.URL || window.webkitURL;
-        this.business_icon = url.createObjectURL(files[0]);
+        if (files.length) {
+          let file = new AV.File(files[0].name, files[0]);
+          this.business_icon = url.createObjectURL(files[0]);
+          file.save().then(//店铺图上传
+            (file) => {
+              this.business_msg.icon = file.attributes.url;
+              this.business_icon_flg = true
+            }, function (error) {
+              console.log(error)// 保存失败，可能是文件无法被读取，或者上传过程中出现问题
+            }
+          )
+        }
       },
+
       goods_url: function (index) {
         let files = this.$refs['goods_pic' + [index]].files;
+        let goods_icon = this.$refs['goods_icon' + [index]];
         let url = window.URL || window.webkitURL;
-        this.goods_icon.push(url.createObjectURL(files[0]));
-        // console.log(url.createObjectURL(files[0]));
-        // console.log(this.$refs['goods_pic' + [index]].files)
+        goods_icon.src = url.createObjectURL(files[0]);
+        if (files.length) {
+          let file = new AV.File(files[0].name, files[0]);
+          file.save().then(//店铺图上传
+            (file) => {
+              this.business_msg.goods[index].goods_pic = file.attributes.url;
+              this.goods_icon_flg++;
+            }, function (error) {
+              console.log(error)// 保存失败，可能是文件无法被读取，或者上传过程中出现问题
+            }
+          )
+        }
       }
     }
   }
