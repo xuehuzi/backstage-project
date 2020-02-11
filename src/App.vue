@@ -21,7 +21,11 @@
     min-height: 100vh;
   }
 
-  .cell{
+  .cell {
     text-align: center;
+  }
+
+  .self_dialog>div:nth-child(2) {
+    padding: 0;
   }
 </style>

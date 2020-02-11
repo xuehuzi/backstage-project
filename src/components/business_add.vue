@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import {query, AV} from './get_data'
+  import {business_data, AV} from './get_data'
 
   export default {
     name: "business_add",
@@ -125,6 +125,7 @@
         }, 1000);
       };
       return {
+        set_id: null,
         business_msg: {
           icon: '',
           name: '',
@@ -173,7 +174,6 @@
           ]
         },
         business_icon: '',
-        //goods_icon: [],
         business_icon_flg: false,
         goods_icon_flg: 0
       }
@@ -199,7 +199,8 @@
                 this.$message({
                   message: '提交成功',
                   type: 'success'
-                })
+                });
+                window.location.reload()
               }
             )
           } else {
