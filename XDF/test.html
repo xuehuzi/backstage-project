@@ -1,28 +1,48 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--<link type="text/css" href="./css/index.css" rel="stylesheet">-->
-    <title>index</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .main{
-            background: darkslategrey;
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no ,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<link type="text/css" href="./css/index.css" rel="stylesheet">-->
+  <title>index</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: red;
+    }
+
+    @media screen and ( max-width: 480px ) and (min-width: 320px) {
+      body {
+        background-color: lightgreen;
+        /*移动端(不含平板)*/
+      }
+    }
+
+    .main {
+      /*background: darkslategrey;*/
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
 <div class="main">
-    <div>
-        <img src="./img/banner.jpg" alt="">
-    </div>
+  <div>
+    <img src="./img/banner.jpg" alt="">
+  </div>
 </div>
+
+<script>
+  !function () {
+    console.log(screen.width)
+  }()
+</script>
+
 </body>
 </html>
