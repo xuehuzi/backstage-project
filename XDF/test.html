@@ -71,9 +71,9 @@
         color: #3a3a3a;
       }
 
-      .part_2_title p{
+      .part_2_title p {
         text-transform: uppercase;
-        letter-spacing: -.12em;
+        /*letter-spacing: -.12em;*/
       }
 
       .part_2_introduce {
@@ -81,13 +81,14 @@
       }
 
       .part_2_introduce img {
-        max-width: 14.75rem;
+        width: 14.75rem;
         margin-right: .8rem;
       }
 
       .part_2_listen {
         text-align: left;
         line-height: 1.875rem;
+        margin-bottom: 2.25rem;
       }
 
       .part_2_imgs ul {
@@ -101,6 +102,31 @@
 
       .part_2_imgs ul li img {
         width: 30vw;
+      }
+
+      .btn_tuition {
+        background: #ee5400;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        margin-bottom: 3.12rem;
+        color: white;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .dish_name {
+        line-height: 2rem;
+      }
+
+      .dish_lists{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .dish_lists li {
+        display: grid;
       }
 
 
@@ -169,14 +195,7 @@
           </li>
         </ul>
       </div>
-    </section>
-  </div>
-
-  <!--  <section class="part_2">
-
-
-
-      <span class="btn_tuition">咨询课程学费></span>
+      <p class="btn_tuition">咨询课程学费></p>
       <p class="dish_name">
         <span class="active">学习菜品包含：</span>
         <span>香菇蒸滑鸡、京酱肉丝、香辣凤爪、麻辣水煮鱼、干煸辣子鸡、
@@ -223,6 +242,16 @@
           <span>四喜丸子</span>
         </li>
       </ul>
+    </section>
+  </div>
+
+  <!--  <section class="part_2">
+
+
+
+
+
+
     </section>
     <section class="part_3">
       <img src="./img/tel_numb.png" alt="">
