@@ -57,7 +57,7 @@
       }
 
       .main_body {
-        padding: 0 1rem;
+        padding: 0 1vw;
       }
 
       .part_2_title {
@@ -79,6 +79,7 @@
       .part_2_introduce {
         display: flex;
         line-height: 2rem;
+        font-size: 1.35rem;
       }
 
       .part_2_introduce img {
@@ -90,11 +91,13 @@
         text-align: left;
         line-height: 2rem;
         margin-bottom: 2.25rem;
+        font-size: 1.35rem;
       }
 
       .part_2_imgs ul {
         display: flex;
         justify-content: space-between;
+        font-size: 1.35rem;
       }
 
       .part_2_imgs ul li {
@@ -112,19 +115,20 @@
         margin-top: 2rem;
         margin-bottom: 3.12rem;
         color: white;
-        font-size: 1.5rem;
+        font-size: 2rem;
         text-align: center;
       }
 
       .dish_name {
         line-height: 2rem;
-        font-size: 1.6rem;
+        font-size: 1.35rem;
       }
 
       .dish_lists{
         display: flex;
         flex-wrap: wrap;
         margin: 2.5rem 0 0 0;
+        font-size: 1.35rem;
       }
 
       .dish_lists li {
@@ -143,6 +147,93 @@
         padding: .3rem 0;
       }
 
+      .part_3_tel{
+        width: 100%;
+      }
+
+      .part_3_imgs {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .part_3_imgs_1{
+        width: 20rem;
+        margin-right: 2vw;
+      }
+
+      .part_3_imgs_ul1 li img {
+        width: 19.6rem;
+      }
+
+      .part_3_imgs_ul1 li:nth-child(1) {
+        margin-bottom: 1.5vw;
+      }
+
+      .part_3_imgs_ul2 {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .part_3_imgs_ul2 li{
+        margin-left: 1vw;
+      }
+
+      .part_3_imgs_ul2 li img{
+        width: 31.5vw;
+      }
+
+      .virtue_lists{
+        display: flex;
+        width: 100vw;
+        flex-wrap: wrap;
+      }
+
+      .virtue_lists li img {
+        width: 48vw;
+      }
+
+      .part_4_lists img {
+        width: 100%;
+      }
+
+      .part_5{
+        text-align: center;
+        font-size: 1.35rem;
+      }
+
+      .part_5 p {
+        margin-top: 5px;
+      }
+
+      .selects, .part_5_from > label > input {
+        width: 100%;
+        padding: 14px 0;
+        border-radius: 5px;
+        margin-bottom: 18px;
+        background: none;
+        outline: none;
+        border: 1px solid #a0a0a0;
+        letter-spacing: 1px;
+        text-indent: 10px;
+        color: #757575;
+      }
+
+      .part_5_from > label > .submit {
+        background: #ff6600;
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 20px 0;
+      }
+
+      .from_main {
+        padding: 0 20px;
+        margin-top: 20px;
+      }
+
+      .footer p {
+        color: #a0a0a0;
+      }
 
     }
 
@@ -257,19 +348,11 @@
         </li>
       </ul>
     </section>
-  </div>
-
-  <!--  <section class="part_2">
-
-
-
-
-
-
-    </section>
     <section class="part_3">
-      <img src="./img/tel_numb.png" alt="">
-      <div class="part_3_title">
+      <a href="#">
+        <img class="part_3_tel" src="./img/tel_numb.png" alt="">
+      </a>
+      <div class="part_2_title">
         <h1> 跨越0基础掌握烹饪技能 让你从“薪”出发</h1>
         <p>SPANNING 0 FOUNDATION,MASTERING CUISINE SKILLS AND KEEPING CORE COMPETENCE</p>
         <img src="./img/index.jpg" alt="">
@@ -288,10 +371,37 @@
           <img src="./img/virtue4.jpg" alt="">
         </li>
       </ul>
-      <span class="btn_tuition btn_tuition_active">可以随到随学吗></span>
+      <p class="btn_tuition btn_tuition_active">可以随到随学吗></p>
+      <div class="part_2_title">
+        <h1>内外兼修 给你更好的学习环境</h1>
+        <p>internal and external part-time study gives you a better learning environment</p>
+        <img src="./img/index.jpg" alt="">
+      </div>
+      <div class="part_3_imgs">
+        <img class="part_3_imgs_1" src="./img/part3-1.jpg" alt="">
+        <ul class="part_3_imgs_ul1">
+          <li>
+            <img src="./img/part3-2.jpg" alt="">
+          </li>
+          <li>
+            <img src="./img/part3-3.jpg" alt="">
+          </li>
+        </ul>
+        <ul class="part_3_imgs_ul2">
+          <li>
+            <img src="./img/part3-4.jpg" alt="">
+          </li>
+          <li>
+            <img src="./img/part3-5.jpg" alt="">
+          </li>
+          <li>
+            <img src="./img/part3-6.jpg" alt="">
+          </li>
+        </ul>
+      </div>
     </section>
     <section class="part_4">
-      <div class="part_4_title">
+      <div class="part_2_title">
         <h1> 扶持全面 创业无忧</h1>
         <p>Support all-round entrepreneurship without worry</p>
         <img src="./img/index.jpg" alt="">
@@ -305,6 +415,40 @@
         <img src="./img/work5.jpg" alt="">
       </div>
     </section>
+    <section class="part_5">
+      <h3>热门课程抢先预约</h3>
+      <p>立刻查看课程学费，1分钟内发至手机</p>
+      <div class="from_main">
+        <form class="part_5_from">
+          <label>
+            <input type="text" placeholder="您的姓名我们将严格保密">
+          </label>
+          <label>
+            <input type="text" placeholder="请输入手机号码">
+          </label>
+          <label>
+            <select class="selects">
+              <option selected value="">请选择意向专业</option>
+              <option value="西餐">西餐</option>
+              <option value="中餐">中餐</option>
+              <option value="面点">面点</option>
+            </select>
+          </label>
+          <label>
+            <input class="submit" type="submit" value="提交获取">
+          </label>
+        </form>
+      </div>
+      <div class="footer">
+        <p>学校地址：陕西省西安市经济技术开发区尚苑路833号</p>
+        <p>电话：029—86694567</p>
+        <p>北京朗杰科技有限公司 版权所有</p>
+      </div>
+    </section>
+  </div>
+
+  <!--  <section class="part_2">
+
     <section class="part_5">
       <h3>热门课程抢先预约</h3>
       <p>立刻查看课程学费，1分钟内发至手机</p>
