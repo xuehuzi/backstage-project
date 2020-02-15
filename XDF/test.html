@@ -7,10 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!--<link type="text/css" href="./css/index.css" rel="stylesheet">-->
   <title>index</title>
-  <!--  <script>
-      let pageWidth = window.innerWidth;
-      document.write('<style>html{font-size:' + pageWidth / 100 + 'px;}</style>')
-    </script>-->
+    <script>
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
+    </script>
   <style>
     * {
       margin: 0;
@@ -62,36 +61,36 @@
 
       .part_2_title {
         text-align: center;
-        margin: 2.25rem 0 3rem 0;
+        margin: 10rem 0 10rem 0;
       }
 
       .part_2_title h1 {
-        font-size: 2rem;
+        font-size: 7rem;
         font-family: "Microsoft YaHei UI Light";
         color: #3a3a3a;
       }
 
       .part_2_title p {
         text-transform: uppercase;
-        /*letter-spacing: -.12em;*/
+        margin: 1rem 0;
       }
 
       .part_2_introduce {
         display: flex;
-        font-size: 1.35rem;
+        font-size: 3rem;
         align-items: center
       }
 
       .part_2_introduce img {
         width: 35vw;
-        margin-right: .2rem;
+        margin-right: 1.5rem;
       }
 
       .part_2_listen {
         text-align: left;
-        line-height: 2rem;
-        margin-bottom: 2.25rem;
-        font-size: 1.35rem;
+        line-height: 5rem;
+        margin-bottom: 3rem;
+        font-size: 3rem;
       }
 
       .part_2_imgs ul {
@@ -110,47 +109,47 @@
 
       .btn_tuition {
         background: #ee5400;
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 8px;
-        margin-top: 2rem;
-        margin-bottom: 3.12rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
         color: white;
-        font-size: 2rem;
+        font-size: 5rem;
         text-align: center;
       }
 
       .dish_name {
-        line-height: 2rem;
-        font-size: 1.35rem;
+        line-height: 5rem;
+        font-size: 3rem;
       }
 
       .dish_lists {
         display: flex;
         flex-wrap: wrap;
-        margin: 2.5rem 0 0 0;
-        font-size: 1.35rem;
+        margin: 3rem 0 0 0;
+        font-size: 3rem;
+        font-weight: bold;
       }
 
       .dish_lists li {
         display: grid;
         text-align: center;
-        margin-left: .3rem;
-        margin-bottom: .3rem;
+        margin-left: .5rem;
+        margin-bottom: .5rem;
       }
 
       .dish_lists li img {
-        width: 31vw;
+        width: 32vw;
       }
 
       .dish_lists li span {
         background: #ee5400;
-        padding: .3rem 0;
+        padding: 1rem 0;
       }
 
       .part_3_tel {
         width: 100%;
-        margin-top: 2.5rem;
-        margin-bottom: -1rem;
+        margin-top: 5rem;
       }
 
       .part_3_imgs {
@@ -159,9 +158,9 @@
       }
 
       .part_3_imgs_1 {
-        width: 48vw;
-        margin-right: 2vw;
-        margin-bottom: 1vw;
+        width: 49vw;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
       }
 
       .part_3_imgs_ul1 {
@@ -170,10 +169,6 @@
 
       .part_3_imgs_ul1 li img {
         width: 100%;
-      }
-
-      .part_3_imgs_ul1 li:nth-child(1) {
-        margin-bottom: 1.5vw;
       }
 
       .part_3_imgs_ul2 {
@@ -210,11 +205,11 @@
 
       .part_5 {
         text-align: center;
-        font-size: 1.35rem;
+        font-size: 3.5rem;
       }
 
       .part_5 p {
-        margin-top: 5px;
+        margin-top: 1rem;
       }
 
       .selects, .part_5_from > label > input {
@@ -245,6 +240,7 @@
       .footer p {
         color: #a0a0a0;
       }
+
 
     }
 
@@ -364,7 +360,7 @@
         <img class="part_3_tel" src="./img/tel_numb.png" alt="">
       </a>
       <div class="part_2_title">
-        <h1> 跨越0基础掌握烹饪技能 让你从“薪”出发</h1>
+        <h1 style="font-size: 5rem"> 跨越0基础掌握烹饪技能 让你从“薪”出发</h1>
         <p>SPANNING 0 FOUNDATION,MASTERING CUISINE SKILLS AND KEEPING CORE COMPETENCE</p>
         <img src="./img/index.jpg" alt="">
       </div>
@@ -384,7 +380,7 @@
       </ul>
       <p class="btn_tuition btn_tuition_active">可以随到随学吗></p>
       <div class="part_2_title">
-        <h1>内外兼修 给你更好的学习环境</h1>
+        <h1 style="font-size: 5rem">内外兼修 给你更好的学习环境</h1>
         <p>internal and external part-time study gives you a better learning environment</p>
         <img src="./img/index.jpg" alt="">
       </div>
@@ -457,6 +453,8 @@
       </div>
     </section>
   </div>
+  <div style="width: 10vw;height: 10vw;border: 1px solid"></div>
+  <div style="width: 10rem;height: 10rem;border: 1px solid"></div>
 </div>
 
 <script>
