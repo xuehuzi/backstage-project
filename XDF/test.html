@@ -5,7 +5,6 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no ,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!--<link type="text/css" href="./css/index.css" rel="stylesheet">-->
   <title>index</title>
     <script>
       document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
@@ -16,31 +15,201 @@
       padding: 0;
     }
 
+
+    li {
+      list-style: none;
+    }
+
     body {
-      background-color: red;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .main_body{
+      padding: 0 1.5rem;
+    }
+
+    .part_1{
+      text-align: center;
+    }
+
+    .part_2_title {
+      text-align: center;
+      margin: 5rem 0 5rem 0;
+    }
+
+    .part_2_title h1 {
+      font-size: 3rem;
+      font-family: "Microsoft YaHei UI Light";
+      color: #3a3a3a;
+    }
+
+    .part_2_title p {
+      text-transform: uppercase;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+
+    .part_2_introduce {
+      display: flex;
+      font-size: 2rem;
+      align-items: center
+    }
+
+    .part_2_introduce img {
+      margin-right: 1rem;
+    }
+
+    .part_2_listen{
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .part_2_introduce div span {
+      line-height: 3rem;
+    }
+
+    .part_2_imgs ul {
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 2rem
+    }
+
+    .part_2_imgs ul li {
+      text-align: center;
+      /*gy*/
+    }
+
+    .active {
+      color: #ee5400;
+    }
+
+    .btn_tuition {
+      background: #ee5400;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .dish_lists {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 1rem 0 0 0;
+      justify-content: space-evenly;
+    }
+
+    .dish_name{
+      font-size: 2rem;
+    }
+
+    .dish_lists li {
+      display: grid;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .dish_lists li span {
+      background: #ee5400;
+      padding: .5rem 0;
+      font-size: 2rem;
+    }
+
+    .virtue_lists {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    /*4*/
+    .part_3_imgs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .part_3_imgs_1 {
+      width: 49%;
+      margin-bottom: 1rem;
+    }
+
+    .part_3_imgs_ul1 {
+      width: 49%;
+      margin-bottom: 1rem;
+    }
+
+    .part_3_imgs_ul1 li img {
+      width: 100%;
+    }
+
+    .part_3_imgs_ul2 {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .part_4_lists{
+      text-align: center;
+    }
+
+    .part_4_lists img:nth-child(5){
+      margin: 2rem 0;
+    }
+
+    .part_4_lists img:nth-child(6){
+      width: 100%;
+    }
+
+    /*5*/
+    .part_5 {
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    .part_5 p {
+      margin-top: .5rem;
+    }
+
+    .selects, .part_5_from > label > input {
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 5px;
+      margin-bottom: 18px;
+      background: none;
+      outline: none;
+      border: 1px solid #a0a0a0;
+      letter-spacing: 1px;
+      text-indent: 10px;
+      color: #757575;
+    }
+
+    .part_5_from > label > .submit {
+      background: #ff6600;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    .from_main {
+      padding: 0 1rem;
+      margin-top: 2rem;
+    }
+
+    .footer p {
+      color: #a0a0a0;
     }
 
     @media screen and ( max-width: 480px ) and (min-width: 320px) {
-      * {
-        margin: 0;
-        padding: 0;
-      }
-
-
-      li {
-        list-style: none;
-      }
-
       body {
         background-color: white;
       }
 
       .title_active {
         font-size: 1.5rem;
-      }
-
-      .active {
-        color: #ee5400;
       }
 
       .part_1 > img {
@@ -57,7 +226,7 @@
       }
 
       .part_2_title h1 {
-        font-size: 7rem;
+        font-size: 5rem;
         font-family: "Microsoft YaHei UI Light";
         color: #3a3a3a;
       }
@@ -65,6 +234,7 @@
       .part_2_title p {
         text-transform: uppercase;
         margin: 1rem 0;
+        font-size: 3rem;
       }
 
       .part_2_introduce {
@@ -90,12 +260,16 @@
         font-size: 1.35rem;
       }
 
-      .part_2_imgs ul li {
+    /* .part_2_imgs ul li {
         text-align: center;
-      }
+      }*/
 
       .part_2_imgs ul li img {
         width: 30vw;
+      }
+
+      .part_2_imgs ul li p {
+        font-size: 3rem;
       }
 
       .btn_tuition {
@@ -349,7 +523,7 @@
         <img class="part_3_tel" src="./img/tel_numb.png" alt="">
       </a>
       <div class="part_2_title">
-        <h1 style="font-size: 5rem"> 跨越0基础掌握烹饪技能 让你从“薪”出发</h1>
+        <h1 class="part_2_title_h1"> 跨越0基础掌握烹饪技能 让你从“薪”出发</h1>
         <p>SPANNING 0 FOUNDATION,MASTERING CUISINE SKILLS AND KEEPING CORE COMPETENCE</p>
         <img src="./img/index.jpg" alt="">
       </div>
@@ -369,7 +543,7 @@
       </ul>
       <p class="btn_tuition btn_tuition_active">可以随到随学吗></p>
       <div class="part_2_title">
-        <h1 style="font-size: 5rem">内外兼修 给你更好的学习环境</h1>
+        <h1>内外兼修 给你更好的学习环境</h1>
         <p>internal and external part-time study gives you a better learning environment</p>
         <img src="./img/index.jpg" alt="">
       </div>
