@@ -6,18 +6,16 @@
         content="width=device-width, user-scalable=no ,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>index</title>
-    <script>
-      document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
-    </script>
+  <script>
+    //document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
+    !function () {
+      console.log(screen.width)
+    }()
+  </script>
   <style>
     * {
       margin: 0;
       padding: 0;
-    }
-
-
-    li {
-      list-style: none;
     }
 
     body {
@@ -25,55 +23,70 @@
       margin: 0 auto;
     }
 
-    .main_body{
-      padding: 0 1.5rem;
+    li {
+      list-style: none;
     }
 
-    .part_1{
+    .part_1 {
       text-align: center;
     }
 
     .part_2_title {
       text-align: center;
-      margin: 5rem 0 5rem 0;
     }
 
     .part_2_title h1 {
-      font-size: 3rem;
       font-family: "Microsoft YaHei UI Light";
       color: #3a3a3a;
     }
 
-    .part_2_title p {
-      text-transform: uppercase;
-      margin: 1rem 0;
-      font-size: 1rem;
-    }
-
     .part_2_introduce {
       display: flex;
-      font-size: 2rem;
       align-items: center
-    }
-
-    .part_2_introduce img {
-      margin-right: 1rem;
-    }
-
-    .part_2_listen{
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .part_2_introduce div span {
-      line-height: 3rem;
     }
 
     .part_2_imgs ul {
       display: flex;
       justify-content: space-evenly;
-      font-size: 2rem
     }
+
+    .btn_tuition {
+      background: #ee5400;
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+    }
+
+    .dish_lists {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+
+    .dish_lists li {
+      display: grid;
+      text-align: center;
+    }
+
+    .virtue_lists {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .part_3_imgs, .part_3_imgs_ul2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+
+    .footer p {
+      color: #a0a0a0;
+    }
+
 
     .part_2_imgs ul li {
       text-align: center;
@@ -84,94 +97,12 @@
       color: #ee5400;
     }
 
-    .btn_tuition {
-      background: #ee5400;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-top: 5rem;
-      margin-bottom: 5rem;
-      color: white;
-      font-size: 2.5rem;
+    .part_4_lists {
       text-align: center;
     }
 
-    .dish_lists {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 1rem 0 0 0;
-      justify-content: space-evenly;
-    }
-
-    .dish_name{
-      font-size: 2rem;
-    }
-
-    .dish_lists li {
-      display: grid;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .dish_lists li span {
-      background: #ee5400;
-      padding: .5rem 0;
-      font-size: 2rem;
-    }
-
-    .virtue_lists {
-      display: flex;
-      width: 100%;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-    }
-
-    /*4*/
-    .part_3_imgs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .part_3_imgs_1 {
-      width: 49%;
-      margin-bottom: 1rem;
-    }
-
-    .part_3_imgs_ul1 {
-      width: 49%;
-      margin-bottom: 1rem;
-    }
-
-    .part_3_imgs_ul1 li img {
-      width: 100%;
-    }
-
-    .part_3_imgs_ul2 {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .part_4_lists{
-      text-align: center;
-    }
-
-    .part_4_lists img:nth-child(5){
-      margin: 2rem 0;
-    }
-
-    .part_4_lists img:nth-child(6){
-      width: 100%;
-    }
-
-    /*5*/
     .part_5 {
       text-align: center;
-      font-size: 2rem;
-    }
-
-    .part_5 p {
-      margin-top: .5rem;
     }
 
     .selects, .part_5_from > label > input {
@@ -191,25 +122,101 @@
       background: #ff6600;
       border: none;
       color: white;
-      font-size: 2.5rem;
     }
 
-    .from_main {
-      padding: 0 1rem;
-      margin-top: 2rem;
-    }
 
-    .footer p {
-      color: #a0a0a0;
+
+    @media screen and (max-width: 1024px) and (min-width: 481px) {
+      body {
+        max-width: 640px;
+        margin: 0 auto;
+        font-size: 62.5%;
+      }
+
+      .main_body {
+        padding: 0 1vw;
+      }
+
+      .part_2_title {
+        margin: 2rem 0 1.5rem 0;
+      }
+
+      .part_2_title h1 {
+        font-size: 2rem;
+      }
+
+      .part_2_introduce img {
+        margin-right: .5rem;
+      }
+
+      .part_2_introduce div{
+        line-height: 2rem;
+        font-size: 1rem;
+      }
+
+      .part_2_imgs ul {
+        font-size: 1rem;
+      }
+
+      .part_2_listen {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
+      .btn_tuition {
+        padding: .5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .dish_name {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
+      .dish_lists {
+        margin: 1rem 0 0 0;
+      }
+
+      .dish_lists li span {
+        background: #ee5400;
+        padding: .5rem 0;
+        font-size: 1rem;
+      }
+
+      .dish_lists li {
+        margin-bottom: 1rem;
+      }
+
+      .part_4_lists img:nth-child(5) {
+        margin: 1rem 0;
+      }
+
+      .part_4_lists img:nth-child(6) {
+        margin: 0 0 1rem 0;
+      }
+
+      .part_5 {
+        font-size: 1rem;
+      }
+
+      .part_5_from > label > .submit {
+        font-size: 1.5rem;
+      }
+
+      .from_main {
+        padding: 0 1rem;
+        margin-top: 2rem;
+      }
+
+
     }
 
     @media screen and ( max-width: 480px ) and (min-width: 320px) {
       body {
-        background-color: white;
-      }
-
-      .title_active {
-        font-size: 1.5rem;
+        font-size: 62.5%;
       }
 
       .part_1 > img {
@@ -221,83 +228,44 @@
       }
 
       .part_2_title {
-        text-align: center;
-        margin: 5rem 0 5rem 0;
+        margin: 2rem 0 1rem 0;
       }
 
       .part_2_title h1 {
-        font-size: 5rem;
-        font-family: "Microsoft YaHei UI Light";
-        color: #3a3a3a;
-      }
-
-      .part_2_title p {
-        text-transform: uppercase;
-        margin: 1rem 0;
-        font-size: 3rem;
+        font-size: 1.2rem;
       }
 
       .part_2_introduce {
-        display: flex;
-        font-size: 3rem;
-        align-items: center
+        font-size: .5rem;
       }
 
       .part_2_introduce img {
         width: 35vw;
-        margin-right: 1rem;
-      }
-
-      .part_2_listen {
-        text-align: left;
-        margin-bottom: 2rem;
-        font-size: 3rem;
+        margin-right: .5rem;
       }
 
       .part_2_imgs ul {
-        display: flex;
-        justify-content: space-evenly;
         font-size: 1.35rem;
       }
 
-    /* .part_2_imgs ul li {
-        text-align: center;
-      }*/
-
-      .part_2_imgs ul li img {
-        width: 30vw;
-      }
-
-      .part_2_imgs ul li p {
-        font-size: 3rem;
+      .part_2_listen {
+        margin-bottom: 1rem;
+        font-size: .5rem;
       }
 
       .btn_tuition {
-        background: #ee5400;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-top: 5rem;
-        margin-bottom: 5rem;
-        color: white;
-        font-size: 4.5rem;
-        text-align: center;
+        padding: .5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
       }
 
-      .dish_name{
-        font-size: 3rem;
+      .dish_name {
+        font-size: .5rem;
       }
 
       .dish_lists {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 3rem 0 0 0;
-        justify-content: space-evenly;
-      }
-
-      .dish_lists li {
-        display: grid;
-        text-align: center;
-        margin-bottom: .3rem;
+        margin: 1rem 0 0 0;
       }
 
       .dish_lists li img {
@@ -307,36 +275,44 @@
       .dish_lists li span {
         background: #ee5400;
         padding: .5rem 0;
-        font-size: 3rem;
+        font-size: .5rem;
+      }
+
+      .dish_lists li {
+        margin-bottom: .3rem;
+      }
+
+      .part_2_imgs ul li img {
+        width: 30vw;
+      }
+
+      .part_2_imgs ul li p {
+        font-size: .5rem;
+      }
+
+      .virtue_lists li img {
+        width: 48vw;
       }
 
       .part_3_tel {
         width: 100%;
-        margin-top: 5rem;
-      }
-
-      .part_3_imgs {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .part_3_imgs_1 {
-        width: 48vw;
-        margin-right: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .part_3_imgs_ul1 {
-        width: 48vw;
+        margin-top: 1rem;
       }
 
       .part_3_imgs_ul1 li img {
         width: 100%;
       }
 
+      .part_3_imgs_1 {
+        width: 48vw;
+      }
+
+      .part_3_imgs_ul1 {
+        width: 48vw;
+      }
+
       .part_3_imgs_ul2 {
-        display: flex;
-        flex-wrap: wrap;
+        margin-top: .3rem;
       }
 
       .part_3_imgs_ul2 li {
@@ -347,66 +323,27 @@
         width: 31.5vw;
       }
 
-      .virtue_lists {
-        display: flex;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-      }
-
-      .virtue_lists li img {
-        width: 48vw;
-      }
-
       .part_4_lists img {
         width: 100%;
       }
 
-      .part_4_lists img:nth-child(5){
-        margin: 2rem 0;
+      .part_4_lists img:nth-child(5) {
+        margin: 1rem 0;
       }
 
       .part_5 {
-        text-align: center;
-        font-size: 3.5rem;
-      }
-
-      .part_5 p {
-        margin-top: .5rem;
-      }
-
-      .selects, .part_5_from > label > input {
-        width: 100%;
-        padding: 14px 0;
-        border-radius: 5px;
-        margin-bottom: 18px;
-        background: none;
-        outline: none;
-        border: 1px solid #a0a0a0;
-        letter-spacing: 1px;
-        text-indent: 10px;
-        color: #757575;
+        font-size: 1rem;
       }
 
       .part_5_from > label > .submit {
-        background: #ff6600;
-        border: none;
-        color: white;
-        font-size: 4.5rem;
+        font-size: 1.5rem;
       }
 
       .from_main {
         padding: 0 1rem;
         margin-top: 2rem;
       }
-
-      .footer p {
-        color: #a0a0a0;
-      }
-
-
     }
-
 
   </style>
 </head>
@@ -419,25 +356,19 @@
     <section class="part_2">
       <div class="part_2_title">
         <h1> 中餐创业速成班 课程特色</h1>
-        <p>Chinese entrepreneurship crash course features</p>
+        <p>CHINESE ENTREPRENEURSHIP CRASH COURSE FEATURES</p>
         <img src="./img/index.jpg" alt="">
       </div>
       <div class="part_2_introduce ">
         <img src="./img/Advantages.jpg" alt="">
         <div>
           <span class="active">中餐创业速成班</span>
-          <span>
-                  主要是以基础强化课程为主，使学员
-                  对烹饪发展历史具有简单的认识和了解，熟练掌握刀工
-                  技术及上浆、挂糊、勾芡、油温、火候等基础知识的掌
-                  握，以及学会十多种常见的复合味的调制要领，掌握原
-                  料的初步熟处理等技术知识。
-                  </span>
+          <span>主要是以基础强化课程为主，使学员对烹饪发展历史具有简单的认识和了解，熟练掌握刀工技术及上浆、挂糊、勾芡、油温、火候等基础知识的掌握，以及学会十多种常见的复合味的调制要领，掌握原料的初步熟处理等技术知识。</span>
         </div>
       </div>
       <div class="part_2_title">
         <h1> 2个月学习内容</h1>
-        <p class="title_active"> Learning content</p>
+        <p>LEARNING CONTENT</p>
         <img src="./img/index.jpg" alt="">
       </div>
       <div class="part_2_listen">
@@ -544,7 +475,7 @@
       <p class="btn_tuition btn_tuition_active">可以随到随学吗></p>
       <div class="part_2_title">
         <h1>内外兼修 给你更好的学习环境</h1>
-        <p>internal and external part-time study gives you a better learning environment</p>
+        <p>INTERNAL AND EXTERNAL PART-TIME STUDY GIVES YOU A BETTER LEARNING ENVIRONMENT</p>
         <img src="./img/index.jpg" alt="">
       </div>
       <div class="part_3_imgs">
@@ -573,7 +504,7 @@
     <section class="part_4">
       <div class="part_2_title">
         <h1> 扶持全面 创业无忧</h1>
-        <p>Support all-round entrepreneurship without worry</p>
+        <p>SUPPORT ALL-ROUND ENTREPRENEURSHIP WITHOUT WORRY</p>
         <img src="./img/index.jpg" alt="">
       </div>
       <div class="part_4_lists">
@@ -619,12 +550,6 @@
   <div style="width: 10vw;height: 10vw;border: 1px solid"></div>
   <div style="width: 10rem;height: 10rem;border: 1px solid"></div>
 </div>
-
-<script>
-  !function () {
-    console.log(screen.width)
-  }()
-</script>
 
 </body>
 </html>
