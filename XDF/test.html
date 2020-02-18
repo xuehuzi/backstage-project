@@ -33,16 +33,28 @@
 
     .part_2_title {
       text-align: center;
+      margin: 30px 0 20px 0;
     }
 
     .part_2_title h1 {
       font-family: "Microsoft YaHei UI Light";
       color: #3a3a3a;
+      font-size: 32px;
     }
 
     .part_2_introduce {
       display: flex;
-      align-items: center
+      align-items: center;
+      line-height: 32px;
+    }
+
+    .part_2_introduce img{
+      margin-right: 10px;
+      width: 100%;
+    }
+
+    .part_2_listen{
+      line-height: 32px;
     }
 
     .part_2_imgs ul {
@@ -55,18 +67,30 @@
       border-radius: 8px;
       color: white;
       text-align: center;
+      font-size: 20px;
+      padding: 8px 0;
+      margin: 15px 0;
+    }
+
+    .dish_name{
+      line-height: 32px;
     }
 
     .dish_lists {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      margin: 15px 0;
     }
-
 
     .dish_lists li {
       display: grid;
       text-align: center;
+    }
+
+    .dish_lists li span {
+      background: #ee5400;
+      padding: 5px 0;
     }
 
     .virtue_lists {
@@ -82,7 +106,6 @@
       justify-content: space-around;
     }
 
-
     .footer p {
       color: #a0a0a0;
     }
@@ -90,7 +113,6 @@
 
     .part_2_imgs ul li {
       text-align: center;
-      /*gy*/
     }
 
     .active {
@@ -101,8 +123,20 @@
       text-align: center;
     }
 
+    .part_4_lists img:nth-child(5) {
+      margin: 15px 0;
+    }
+
+    .part_4_lists img:nth-child(6) {
+      margin: 0 0 15px 0;
+    }
+
     .part_5 {
       text-align: center;
+    }
+
+    .from_main{
+      margin-top: 15px;
     }
 
     .selects, .part_5_from > label > input {
@@ -126,7 +160,7 @@
 
 
 
-    @media screen and (max-width: 1024px) and (min-width: 481px) {
+    @media screen and (max-width: 800px) and (min-width: 480px) {
       html{
         font-size: 62.5%;
       }
@@ -240,11 +274,10 @@
 
       .part_2_introduce {
         font-size: 1.15rem;
-        /*line-height: 1rem;*/
+        line-height: 1.8rem;
       }
 
       .part_2_introduce img {
-        width: 35vw;
         margin-right: .5rem;
       }
 
