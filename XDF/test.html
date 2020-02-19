@@ -50,7 +50,7 @@
 
     .part_2_introduce img{
       margin-right: 10px;
-      width: 100%;
+      /*width: 100%;*/
     }
 
     .part_2_listen{
@@ -59,7 +59,19 @@
 
     .part_2_imgs ul {
       display: flex;
-      justify-content: space-evenly;
+    }
+
+    .part_2_imgs ul li {
+      text-align: center;
+      flex: 1;
+    }
+
+    .part_2_imgs ul li img {
+      width: 100%;
+    }
+
+    .part_2_imgs ul li:not(:last-child){
+      padding-right: 5px;
     }
 
     .btn_tuition {
@@ -100,19 +112,47 @@
       justify-content: space-evenly;
     }
 
-    .part_3_imgs, .part_3_imgs_ul2 {
+    .part_3_imgs,.part_3_imgs_ul2 {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+    }
+
+    .part_3_imgs_ul2{
+      margin-top: 8px;
+    }
+
+    .part_3_imgs_1{
+      display: block;
+      flex: 1;
+      padding-right: 8px;
+    }
+
+    .part_3_imgs_ul1{
+      flex: 1;
+    }
+
+    .part_3_imgs_ul2 li {
+      flex: 1;
+    }
+
+    .part_3_imgs_ul2 li img {
+      width: 100%;
+    }
+
+    .part_3_imgs_ul2 li:not(:last-child){
+      padding-right: .5rem;
+    }
+
+    .part_3_imgs_ul1 li:nth-child(1){
+      margin-bottom: 8px;
+    }
+
+    .part_3_imgs_ul1 li img {
+      width: 100%;
+      display: block;
     }
 
     .footer p {
       color: #a0a0a0;
-    }
-
-
-    .part_2_imgs ul li {
-      text-align: center;
     }
 
     .active {
@@ -227,6 +267,10 @@
         margin-bottom: 1.5rem;
       }
 
+      .part_3{
+        text-align: center;
+      }
+
       .part_4_lists img:nth-child(5) {
         margin: 1rem 0;
       }
@@ -279,6 +323,7 @@
 
       .part_2_introduce img {
         margin-right: .5rem;
+        width: 35vw;
       }
 
       .part_2_listen {
@@ -317,10 +362,6 @@
         margin-bottom: .3rem;
       }
 
-      .part_2_imgs ul li img {
-        width: 30vw;
-      }
-
       .part_2_imgs ul li p {
         font-size: 1.15rem;
       }
@@ -334,8 +375,8 @@
         margin-top: 1rem;
       }
 
-      .part_3_imgs_ul1 li img {
-        width: 100%;
+      .part_3_imgs_ul1 li:nth-child(1){
+        margin-bottom: .4rem;
       }
 
       .part_3_imgs_1 {
@@ -347,11 +388,7 @@
       }
 
       .part_3_imgs_ul2 {
-        margin-top: .3rem;
-      }
-
-      .part_3_imgs_ul2 li {
-        margin-left: 1vw;
+        margin-top: .5rem;
       }
 
       .part_3_imgs_ul2 li img {
@@ -523,18 +560,19 @@
             <img src="./img/part3-3.jpg" alt="">
           </li>
         </ul>
-        <ul class="part_3_imgs_ul2">
-          <li>
-            <img src="./img/part3-4.jpg" alt="">
-          </li>
-          <li>
-            <img src="./img/part3-5.jpg" alt="">
-          </li>
-          <li>
-            <img src="./img/part3-6.jpg" alt="">
-          </li>
-        </ul>
+
       </div>
+      <ul class="part_3_imgs_ul2">
+        <li>
+          <img src="./img/part3-4.jpg" alt="">
+        </li>
+        <li>
+          <img src="./img/part3-5.jpg" alt="">
+        </li>
+        <li>
+          <img src="./img/part3-6.jpg" alt="">
+        </li>
+      </ul>
     </section>
     <section class="part_4">
       <p class="btn_tuition">查看更多环境>></p>
