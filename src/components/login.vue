@@ -78,7 +78,7 @@
                 if (this.user_info[i].user_password === this.form_msg.user_password) {//密码正确
                   console.log('登陆成功');
                   //路由跳转
-                  this.$router.push({path: "/main_list"})
+                  this.$router.push({path: "/main_list/business_query"})
                 } else {
                   this.$message({
                     message: "密码错误",
